@@ -91,24 +91,6 @@ Pin-Priority: -1" >/etc/apt/preferences.d/00systemd
 		# Finalizado
 		rm -r /etc/systemd/
 		sed -i '106s/'"Debian GNU\/Linux"'/'"Loc-OS 23"'/g' /boot/grub/grub.cfg
-		cat <<EOF >/etc/init.d/remove_systemd.sh
-
-#!/bin/bash
-
-apt -y purge systemd && update-grub
-update-rc.d remove_systemd.sh remove
-
-rm -rf /etc/init.d/remove_systemd.sh
-reboot
-EOF
-
-		chmod +x /etc/init.d/remove_systemd.sh
-		update-rc.d remove_systemd.sh defaults
-
-		echo "Restart system"
-		sleep 2
-		reboot
-
 		break
 		;;
 	[Nn]*)
